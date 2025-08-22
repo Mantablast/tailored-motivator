@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inspiring New Tab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="container">
+    <section class="quote-card" role="region" aria-label="Inspiring quote">
+        <div id="quoteText" class="quote">Loading…</div>
+        <div id="quoteAuthor" class="author"></div>
+        <div class="controls">
+            <button id="refreshBtn" class="btn" aria-label="Show another quote">New quote</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span>Tip: your choices & theme sync across devices (when signed into Chrome).</span>
+    </footer>
+</main>
+
+<!-- Fixed bottom dock holding the controls -->
+<div class="bottom-dock" role="region" aria-label="Controls dock">
+    <details class="themes" id="themesPanel" aria-labelledby="themesTitle">
+        <summary><h2 id="themesTitle">Background themes</h2></summary>
+        <div class="panel-body">
+            <div class="theme-grid" id="themes" role="listbox" aria-label="Background themes"></div>
+        </div>
+    </details>
+
+    <details class="filters" id="filtersPanel" aria-labelledby="filtersTitle">
+        <summary><h2 id="filtersTitle">Choose your topics</h2></summary>
+        <div class="panel-body">
+            <div id="topics" class="topic-grid" role="group" aria-label="Quote topics"></div>
+            <div class="filter-actions">
+                <button id="selectAll" class="btn secondary">Select all</button>
+                <button id="clearAll" class="btn ghost">Clear</button>
+            </div>
+        </div>
+    </details>
+</div>
+
+<script src="quotes.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

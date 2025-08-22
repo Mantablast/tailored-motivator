@@ -1,0 +1,102 @@
+:root{
+  --bg: #0f1222;
+  --card:#171a2e;
+  --text:#e9ecf1;
+  --muted:#a7b0c3;
+  --brand:#7c8cff;
+  --brand-2:#9be7c4;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);
+  background-color: var(--bg);
+  background-image: url('backgrounds/calm-1.jpg'); /* default, replaced by JS */
+  background-size: cover; background-position: center; background-attachment: fixed;
+  position: relative;
+}
+
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background: radial-gradient(1000px 600px at 80% -10%, rgba(124,140,255,.28), transparent 60%),
+              radial-gradient(800px 500px at 10% 110%, rgba(155,231,196,.22), transparent 60%),
+              linear-gradient(180deg, rgba(5,7,16,.55), rgba(5,7,16,.55));
+}
+.container{
+  max-width:1000px; margin:0 auto; padding:48px 24px 160px;
+  position:relative; z-index:1;
+  display:grid; gap:32px;
+}
+.quote-card{
+  backdrop-filter: blur(6px);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.quote{font-size: clamp(24px, 4vw, 40px); line-height:1.25; font-weight:800; letter-spacing:-0.02em}
+.author{margin-top:12px; font-size: clamp(16px, 2vw, 18px); color:var(--muted); font-weight:600}
+.controls{margin-top:24px}
+.btn{
+  border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.10);
+  color:var(--text); padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600;
+  transition:transform .04s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover{background:rgba(255,255,255,.16)}
+.btn:active{transform:translateY(1px)}
+.btn.secondary{background: rgba(124,140,255,.20)}
+.btn.ghost{background:transparent}
+
+/* Bottom dock */
+.bottom-dock{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:24px; width:min(1000px, calc(100% - 32px));
+  display:flex; gap:12px; align-items:flex-end; justify-content:flex-end; z-index:3;
+}
+.bottom-dock details{
+  border:1px solid rgba(255,255,255,.35); border-radius:16px; overflow:hidden;
+  background:rgba(0,0,0,.85); min-width:240px; box-shadow:0 8px 28px rgba(0,0,0,.45);
+}
+.bottom-dock details summary{
+  display:flex; align-items:center; gap:8px; padding:10px 14px; cursor:pointer; list-style:none; outline:none;
+}
+.bottom-dock details summary::-webkit-details-marker{ display:none }
+.bottom-dock details summary::after{ content:"▸"; margin-left:auto; opacity:.9; transition:transform .2s ease }
+.bottom-dock details[open] summary::after{ transform:rotate(90deg) }
+.panel-body{ padding:12px 14px; max-height:50vh; overflow:auto }
+
+/* Reuse existing visual styles but remove padding on the details shells */
+.themes, .filters{
+  background:rgba(0,0,0,.85);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:16px;
+  padding:0;
+}
+.themes h2, .filters h2{display:inline; font-size:14px; color:var(--text); font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin:0; color: grey;}
+.theme-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-top:6px}
+.theme{position:relative; border-radius:14px; overflow:hidden; cursor:pointer; border:2px solid transparent}
+.theme img{width:100%; height:80px; object-fit:cover; display:block; filter:saturate(105%) contrast(105%)}
+.theme .label{position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.45); padding:4px 8px; border-radius:999px; font-size:12px; color: white;}
+.theme.active{border-color:#9be7c4; box-shadow:0 0 0 3px rgba(155,231,196,.35)}
+
+.topic-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:6px}
+.topic{
+  display:flex; align-items:center; justify-content:center; padding:10px 12px; border-radius:999px; cursor:pointer; user-select:none; font-weight:700;
+  border:1px solid rgba(255,255,255,.45); background: rgba(20,20,20,.95); color:var(--text);
+}
+.topic.active{ border-color: transparent; background: linear-gradient(135deg, rgba(124,140,255,.85), rgba(155,231,196,.85)); color:#0b0e1a }
+.topic input{display:none}
+.filter-actions{display:flex; gap:8px; margin-top:12px}
+.footer{opacity:.95; font-size:13px}
+
+/* Responsive stuffs */
+@media (max-width:700px){
+  .bottom-dock{ width:calc(100% - 24px); bottom:16px; flex-direction:column; gap:8px }
+  .bottom-dock details{ width:100%; min-width:0 }
+}
+
+/* Responsive tune-ups */
+@media (max-width:600px){
+  .quote-card{padding:28px}
+}
